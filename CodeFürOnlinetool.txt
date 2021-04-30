@@ -26,11 +26,12 @@ class Spielfeld {
                 }
             }
         }
+        
         public void setzeSpielstein(int spielerNr, int spalte)
         {
             int x = feld.length-1;
             boolean fortsetzen = true;
-            while(x >= 0 && fortsetzen == true)
+            while(x >= 0 && fortsetzen == true) 
             {
                 if(feld[x][spalte] == 0 )
                 {
@@ -44,6 +45,7 @@ class Spielfeld {
                 System.out.println("Der Stein konnte nicht gesetzt werden!");
             }
         }
+        
         public void ausgabeSpielfeld()
         {
             for(int i=0; i < feld.length; i++) // zeilenangabe
@@ -53,6 +55,18 @@ class Spielfeld {
                     System.out.print("| " + feld[i][j] + " |");
                 }
                 System.out.println();
+            }
+        }
+        public String to_s()
+        {
+            String str="";
+            for(int i=0; i < feld.length; i++) // zeilenangabe
+            {
+                for(int j=0; j < feld[i].length; j++) // spaltenangabe
+                {
+                    str+=("| " + feld[i][j] + " |");
+                }
+                str+="\n";
             }
         }
         public boolean unentschieden()
