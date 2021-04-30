@@ -60,11 +60,11 @@ class Spielfeld {
         public String toString()
         {
             String str="";
-            for(int i=0; i < feld.length; i++) // zeilenangabe
+            for(int x=0; x < feld.length; x++) // zeilenangabe
             {
-                for(int j=0; j < feld[i].length; j++) // spaltenangabe
+                for(int y=0; y < feld[i].length; y++) // spaltenangabe
                 {
-                    str+=("| " + feld[i][j] + " |");
+                    str+=("| " + feld[x][y] + " |");
                 }
                 str+="\n";
             }
