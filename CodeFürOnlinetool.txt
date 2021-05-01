@@ -178,7 +178,7 @@ class Spielfeld {
             {
                 if(feld[x][y] == Spieler && feld[x+1][y+1] == Spieler && feld[x+2][y+2] == Spieler && feld[x+3][y+3] == Spieler)
                 {
-                returnwert = true;
+                returnwert = true; 
                 }
             }  
             if(x - 3 >= 0 && y + 3 < feld.length)
