@@ -251,7 +251,6 @@ class Spieler {
         System.out.println("Herzlichen Glückwunsch, " + aktuellerSpieler.getName() + " hat gewonnen!!");
          
         beendeSpiel();
-        //sc.close();
     }
     public static void initialisiereMenue()
     {
@@ -260,9 +259,7 @@ class Spieler {
         System.out.println();
         System.out.println("Spiel beginnen: [1]");
         System.out.println("Spiel beenden:  [beliebige Eingabe]");
-         
-        //Scanner sc = new Scanner(System.in);
-         
+                  
         int eingabe = Main.scanner.read(); //Integer.parseInt(sc.nextLine());
         if(eingabe == 1)
         {
@@ -272,7 +269,6 @@ class Spieler {
         {
             beendeSpiel();
         }
-         //sc.close();
     }
      
     public static void beendeSpiel()
