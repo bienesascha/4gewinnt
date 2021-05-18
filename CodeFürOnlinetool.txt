@@ -218,8 +218,6 @@ class Spieler {
         Spieler spieler2 = new Spieler("Kalle", 2);
         Spieler aktuellerSpieler = spieler1;
         
-        //Scanner sc = new Scanner(System.in);
-         
         // Spielfeld ausgaben
         do
         {
