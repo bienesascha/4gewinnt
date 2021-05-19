@@ -11,8 +11,6 @@ public class Main {
     }
 }
 
-
-
 class Spielfeld {
      private int feld[][] = null;    
         public Spielfeld(int x, int y)
