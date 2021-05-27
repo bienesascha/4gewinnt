@@ -185,6 +185,8 @@ class Spieler {
         spielernummer=nummer;
         speilername=name;
     }
+    private Spieler(){
+    }
     public String getName(){
         return speilername;
     }
@@ -193,52 +195,76 @@ class Spieler {
     }
 }
 
+class PCSpieler extends Spieler{
+    public PCSpieler(String name, int nummer){
+        super(name,nummer);
+    }
+    public int setzeNächstenSteinInSpalte(){
+        return (int)(Math.random() * 7);
+    }
+}
 
 
  class Hauptprogramm {
     public static void initialisiereSpielmenue(int zeile, int spalte)
     {
         Spielfeld sp1 = new Spielfeld(zeile,spalte);
+        Spieler spieler2;
         System.out.println("Bitte Spielernamen für Spieler 1 eingeben");
         Spieler spieler1 = new Spieler(Main.scanner.readString(), 1);
-        System.out.println("Bitte Spielernamen für Spieler 2 eingeben");
-        Spieler spieler2 = new Spieler(Main.scanner.readString(), 2);
+        System.out.println("Bitte Spielernamen für Spieler 2 eingeben bzw \"PC\" wenn Sie gegen den PC Speilen wollen:");
+        String name= Main.scanner.readString();
+        if (name=="PC")
+            spieler2= new PCSpieler(name, 2);
+        else
+            spieler2= new Spieler(name, 2);
         Spieler aktuellerSpieler = spieler1;
         
         // Spielfeld ausgaben
         do
         {
-        System.out.println(aktuellerSpieler.getName() + ", Sie sind an der Reihe!");
-        System.out.println();
-         
-        sp1.ausgabeSpielfeld();
-         
-        System.out.println();
-        System.out.println("Bitte wählen Sie die Spalte aus! (Wert zwischen 1 und " + spalte + ")");
-        System.out.println("bei Eingaben über " + (spalte+1) + " wird das Spiel beendet!");
-        int eingabe = Main.scanner.read()-1; 
-        if(eingabe >= 0 && eingabe < spalte)
-        {
-            sp1.setzeSpielstein(aktuellerSpieler.getSpielerNr(), eingabe);
-            if(aktuellerSpieler.getSpielerNr() == 1)
+            int eingabe;
+            if (aktuellerSpieler.getName()!="PC")
+            {
+                System.out.println(aktuellerSpieler.getName() + ", Sie sind an der Reihe!");
+                System.out.println();
+                 
+                sp1.ausgabeSpielfeld();
+                 
+                System.out.println();
+                System.out.println("Bitte wählen Sie die Spalte aus! (Wert zwischen 1 und " + spalte + ")");
+                System.out.println("bei Eingaben über " + (spalte+1) + " wird das Spiel beendet!");
+                eingabe = Main.scanner.read()-1; 
+            }
+            else // Speiler ist der PC
+            {
+                System.out.println();
+                System.out.println("Speiler PC:");
+                eingabe = ....; //ToDo
+                //eingabe=aktuellerSpieler.setzeNächstenSteinInSpalte()-1;
+            }
+            if(eingabe >= 0 && eingabe < spalte)
+            {
+                sp1.setzeSpielstein(aktuellerSpieler.getSpielerNr(), eingabe);
+                if(aktuellerSpieler.getSpielerNr() == 1)
+                    {
+                    aktuellerSpieler = spieler2;
+                    }
+                else
                 {
-                aktuellerSpieler = spieler2;
+                    aktuellerSpieler = spieler1;
                 }
+            }
             else
             {
-                aktuellerSpieler = spieler1;
+                beendeSpiel();
             }
-        }
-        else
-        {
-            beendeSpiel();
-        }
+            
         } while(sp1.unentschieden() == false && sp1.testeReihe(aktuellerSpieler.getSpielerNr()) == false);
          
         System.out.println("Herzlichen Glückwunsch, " + aktuellerSpieler.getName() + " hat gewonnen!!");
          
         beendeSpiel();
-        //sc.close();
     }
     public static void initialisiereMenue()
     {
