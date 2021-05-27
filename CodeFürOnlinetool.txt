@@ -205,8 +205,6 @@ class Spieler {
         Spieler spieler2 = new Spieler(Main.scanner.readString(), 2);
         Spieler aktuellerSpieler = spieler1;
         
-        //Scanner sc = new Scanner(System.in);
-         
         // Spielfeld ausgaben
         do
         {
@@ -216,9 +214,9 @@ class Spieler {
         sp1.ausgabeSpielfeld();
          
         System.out.println();
-        System.out.println("Bitte wählen Sie die Spalte aus! (Wert zwischen 0 und " + spalte + ")");
-        System.out.println("bei Eingaben über " + spalte + " wird das Spiel beendet!");
-        int eingabe = Main.scanner.read(); //Integer.parseInt(sc.nextLine());
+        System.out.println("Bitte wählen Sie die Spalte aus! (Wert zwischen 1 und " + spalte + ")");
+        System.out.println("bei Eingaben über " + (spalte+1) + " wird das Spiel beendet!");
+        int eingabe = Main.scanner.read()-1; 
         if(eingabe >= 0 && eingabe < spalte)
         {
             sp1.setzeSpielstein(aktuellerSpieler.getSpielerNr(), eingabe);
@@ -251,7 +249,7 @@ class Spieler {
         System.out.println("Spiel beenden:  [beliebige Eingabe]");
          
          
-        int eingabe = Main.scanner.read(); //Integer.parseInt(sc.nextLine());
+        int eingabe = Main.scanner.read();
         if(eingabe == 1)
         {
             Hauptprogramm.initialisiereSpielmenue(6,7);
@@ -260,7 +258,6 @@ class Spieler {
         {
             beendeSpiel();
         }
-         //sc.close();
     }
      
     public static void beendeSpiel()
