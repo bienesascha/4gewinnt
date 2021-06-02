@@ -240,7 +240,7 @@ class PCSpieler extends Spieler{
             {
                 System.out.println();
                 System.out.println("Speiler PC:");
-                eingabe = ....; //ToDo
+                eingabe = 2; //ToDo
                 //eingabe=aktuellerSpieler.setzeNächstenSteinInSpalte()-1;
             }
             if(eingabe >= 0 && eingabe < spalte)
