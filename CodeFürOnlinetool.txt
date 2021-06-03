@@ -14,7 +14,7 @@ public class Main {
 
 
 class Spielfeld {
-     private int feld[][] = null;    
+     public int feld[][] = null;    
         public Spielfeld(int x, int y)
         {
             feld = new int[x][y];
@@ -201,8 +201,15 @@ class PCSpieler extends Spieler{
     public PCSpieler(String name, int nummer){
         super(name,nummer);
     }
-    public int setzeNächstenSteinInSpalte(){
+    public static int setzeNächstenSteinInZufälligeSpalte(){
         return (int)(Math.random() * 7);
+    }
+    public static int setzeNächstenSteinWennBacktrackingEineLösungHatSonstBEENDEN(Spielfeld sp){
+        int retvalue=8;
+        
+        sp.feld[1][1];
+        
+        return retvalue;
     }
 }
 
@@ -216,7 +223,7 @@ class PCSpieler extends Spieler{
         Spieler spieler1 = new Spieler(Main.scanner.readString(), 1);
         System.out.println("Bitte Spielernamen für Spieler 2 eingeben bzw \"PC\" wenn Sie gegen den PC Speilen wollen:");
         String name= Main.scanner.readString();
-        if (name=="PC")
+        if (0==name.compareToIgnoreCase("PC"))
             spieler2= new PCSpieler(name, 2);
         else
             spieler2= new Spieler(name, 2);
@@ -242,8 +249,9 @@ class PCSpieler extends Spieler{
             {
                 System.out.println();
                 System.out.println("Spieler PC:");
-                eingabe = 2; //ToDo
-                //eingabe=aktuellerSpieler.setzeNächstenSteinInSpalte()-1;
+                //eingabe = 2; //ToDo
+                //eingabe=PCSpieler.setzeNächstenSteinInZufälligeSpalte()-1;
+                eingabe=PCSpieler.setzeNächstenSteinWennBacktrackingEineLösungHatSonstBEENDEN( sp1 )-1;
             }
             if(eingabe >= 0 && eingabe < spalte)
             {
