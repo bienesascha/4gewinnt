@@ -26,7 +26,7 @@ class Spielfeld {
                 }
             }
         }
-        public void setzeSpielstein(int spielerNr, int spalte)
+        public boolean setzeSpielstein(int spielerNr, int spalte)
         {
             int x = feld.length-1;
             boolean fortsetzen = true;
@@ -42,7 +42,9 @@ class Spielfeld {
             if(x < 0)
             {
                 System.out.println("Der Stein konnte nicht gesetzt werden!");
+                return false;
             }
+            return true;
         }
         public void ausgabeSpielfeld()
         {
@@ -224,7 +226,7 @@ class PCSpieler extends Spieler{
         do
         {
             int eingabe;
-            if (aktuellerSpieler.getName()!="PC")
+            if (0 != aktuellerSpieler.getName().compareToIgnoreCase("PC"))
             {
                 System.out.println(aktuellerSpieler.getName() + ", Sie sind an der Reihe!");
                 System.out.println();
@@ -236,16 +238,16 @@ class PCSpieler extends Spieler{
                 System.out.println("bei Eingaben über " + (spalte+1) + " wird das Spiel beendet!");
                 eingabe = Main.scanner.read()-1; 
             }
-            else // Speiler ist der PC
+            else // Spieler ist der PC
             {
                 System.out.println();
-                System.out.println("Speiler PC:");
+                System.out.println("Spieler PC:");
                 eingabe = 2; //ToDo
                 //eingabe=aktuellerSpieler.setzeNächstenSteinInSpalte()-1;
             }
             if(eingabe >= 0 && eingabe < spalte)
             {
-                sp1.setzeSpielstein(aktuellerSpieler.getSpielerNr(), eingabe);
+                if (sp1.setzeSpielstein(aktuellerSpieler.getSpielerNr(), eingabe)){
                 if(aktuellerSpieler.getSpielerNr() == 1)
                     {
                     aktuellerSpieler = spieler2;
@@ -253,6 +255,9 @@ class PCSpieler extends Spieler{
                 else
                 {
                     aktuellerSpieler = spieler1;
+                }
+                }else{
+                    System.out.println("Zeile schon voll - geht nicht - NOCHMAL!");
                 }
             }
             else
